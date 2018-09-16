@@ -6,10 +6,16 @@
 
 package Test;
 
+import View.MainFrame;
+
 /**
  *
  * @author ASUS
  */
 public class TestMainFrame {
-    
+    public static void main(String[] args) {
+        MainFrame test = new MainFrame();
+        test.setSize(400, 400);
+        test.setVisible(true);
+    }
 }

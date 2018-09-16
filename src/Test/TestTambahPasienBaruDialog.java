@@ -6,10 +6,16 @@
 
 package Test;
 
+import View.DaftarPasienBaruDialog;
+
 /**
  *
  * @author ASUS
  */
 public class TestTambahPasienBaruDialog {
-    
+    public static void main(String[] args) {
+        DaftarPasienBaruDialog pas = new DaftarPasienBaruDialog();
+        pas.setSize(400, 400);
+        pas.setVisible(true);
+    }
 }

@@ -28,7 +28,7 @@ public class DaftarAntrianDialog extends JDialog implements ActionListener{
     private JTextField TextNama;
     private JTextField TextAlamat;
     private JButton saveButton;
-        private JMenuBar menuBar;
+    private JMenuBar menuBar;
     private JMenu fileMenu;
     private JMenuItem exitMenuItem;
     private JMenuItem tambahPasienMenuItem;
@@ -81,11 +81,8 @@ public class DaftarAntrianDialog extends JDialog implements ActionListener{
         saveButton.setBounds(150, 150, 75, 30);
         this.add(saveButton);
         
-        // buat menu bar
         menuBar = new JMenuBar();
-        // set Titile
         this.setTitle("Main Frame");
-        // buat menu
         fileMenu = new JMenu("File");
         exitMenuItem = new JMenuItem("exit");
         tambahPasienMenuItem = new JMenuItem("TambahPasien");
@@ -97,7 +94,6 @@ public class DaftarAntrianDialog extends JDialog implements ActionListener{
         tambahPasienMenuItem.addActionListener((ActionListener) this);
 
         this.setJMenuBar(menuBar);
-        
         
         
         

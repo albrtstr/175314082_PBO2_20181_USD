@@ -6,13 +6,16 @@
 
 package Test;
 
+import View.DaftarAntrianDialog;
+
 /**
  *
  * @author ASUS
  */
 public class TestTambahAntrianDialog {
     public static void main(String[] args) {
-        AntrianDialog test = new TambahAntrianDialog();
+        DaftarAntrianDialog test = new DaftarAntrianDialog();
         test.setSize(500, 400);
         test.setVisible(true);
+    }
 }

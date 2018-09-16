@@ -34,6 +34,10 @@ public class Pasien {
         this.nik = nik;
     }
 
+    public Pasien (String nik){
+        this.nik = nik;
+    }
+    
     public Pasien() {
          //To change body of generated methods, choose Tools | Templates.
     }
@@ -139,14 +143,18 @@ public class Pasien {
 
     }
 
-    public static ArrayList<Pasien> daftarPasienKlinik = new ArrayList<>();
+    public static ArrayList<Pasien> daftarPasien = new ArrayList<Pasien>();
     
     public static void tambahPasienBaru(Pasien pasien) {
-
+        daftarPasien.add(pasien);
     }
 
     public static Pasien cariPasien(String noRM) {
-        
+        for (int i = 0; i < daftarPasien.size(); i++) {
+            if (noRM == null ? daftarPasien.get(i).getNoRekamMedis() == null : noRM.equals(daftarPasien.get(i).getNoRekamMedis())) {
+                return daftarPasien.get(i);
+            }
+        }
         return null;
     }
 }
