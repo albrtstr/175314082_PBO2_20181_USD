@@ -43,7 +43,7 @@ public class AntrianPasien {
     
     private static ArrayList<Pasien> daftarPasien = new ArrayList<>();
     
-    public ArrayList<Pasien> getList(){
+    public ArrayList<Pasien> daftarPasien(){
         return daftarPasien;
     }
     

@@ -24,14 +24,15 @@ public class Pasien {
     private int tahunLahir;
     private String nik;
     //Pasien daftarPasienKlinik[];
+    public static ArrayList<Pasien> daftarPasien = new ArrayList<>();
 
-    public Pasien(String nama, String alamat, String tempatLahir, int tanggalLahir, int bulanLahir, int tahunLahir, String nik) {
+    public Pasien(String nama, String alamat, String tempatLahir, int tanggalLahir, int bulanLahir, int tahunLahir, String noRM) {
         this.nama = nama;
         this.alamat = alamat;
         this.tempatLahir = tempatLahir;
         this.tanggalLahir = tanggalLahir;
         this.tahunLahir = tahunLahir;
-        this.nik = nik;
+        this.noRekamMedis = noRM;
     }
 
     public Pasien (String nik){
@@ -39,7 +40,7 @@ public class Pasien {
     }
     
     public Pasien() {
-         //To change body of generated methods, choose Tools | Templates.
+         
     }
 
     public String getNik() {
@@ -55,22 +56,11 @@ public class Pasien {
         return noRekamMedis;
     }
 
-    public void setNoRekamMedis(String tahunLahir) throws Exception {
-        if (tahunLahir.length() >= 6) {
-            this.noRekamMedis = tahunLahir;
-        } else {
-            throw new Exception("Salah Tanggal");
-        }
+    public void setNoRekamMedis(String noRM) {
+        this.noRekamMedis = noRM;
 
     }
 
-    public String BuatRekamMedis() {
-        String noRekamMedis;
-        Date date = new Date();
-        SimpleDateFormat ft = new SimpleDateFormat("yyyyMMdd");
-        noRekamMedis = ft.format(date) + nama.substring(0, 3);
-        return noRekamMedis;
-    }
 
     public String getNama() {
         return nama;
@@ -100,16 +90,8 @@ public class Pasien {
         return tanggalLahir;
     }
 
-    public void setTanggalLahir(int tanggalLahir) throws Exception {
-        if (tanggalLahir > 0) {
-            if (tanggalLahir <= 31) {
-                this.tanggalLahir = tanggalLahir;
-            } else {
-                throw new Exception("Tanggal Salah");
-            }
-        } else {
-            throw new Exception("Tanggal Salah");
-        }
+    public void setTanggalLahir(int tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
 
     }
 
@@ -117,34 +99,19 @@ public class Pasien {
         return bulanLahir;
     }
 
-    public void setBulanLahir(int bulanLahir) throws Exception {
-        if (bulanLahir > 0) {
-            if (bulanLahir <= 12) {
-                this.bulanLahir = bulanLahir;
-            } else {
-                throw new Exception("Salah Bulan");
-            }
-        } else {
-            throw new Exception("Bulan Salah");
-        }
-
+    public void setBulanLahir(int bulanLahir) {
+        this.bulanLahir = bulanLahir;
     }
 
     public int getTahunLahir() {
         return tahunLahir;
     }
 
-    public void setTahunLahir(int tahunLahir) throws Exception {
-        if (tahunLahir > 0) {
-            this.tahunLahir = tahunLahir;
-        } else {
-            throw new Exception("Salah Tahun");
-        }
-
+    public void setTahunLahir(int tahunLahir) {
+        this.tahunLahir = tahunLahir;
     }
 
-    public static ArrayList<Pasien> daftarPasien = new ArrayList<Pasien>();
-    
+     
     public static void tambahPasienBaru(Pasien pasien) {
         daftarPasien.add(pasien);
     }

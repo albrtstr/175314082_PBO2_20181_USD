@@ -34,7 +34,7 @@ public class TestKelasPasien {
                     04, // tanggal lahir
                     11, // bulan lahir
                     1999, // tahun lahir
-                    "19991104" // NIK
+                    "19991105" // NIK
             );
 
             Pasien.tambahPasienBaru(test);
@@ -44,7 +44,8 @@ public class TestKelasPasien {
                 System.out.println("Nama : " + Pasien.daftarPasien.get(i).getNama());
             }
 
-            Pasien cari = Pasien.cariPasien("19991104");
+            Pasien cari = Pasien.cariPasien("19991105");
+            System.out.println(cari.getNama());
             
         } catch (Exception e) {
             e.printStackTrace();

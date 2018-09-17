@@ -28,19 +28,16 @@ import javax.swing.JTextField;
 public class DaftarPasienBaruDialog extends JDialog implements ActionListener{
     private JLabel nama;
     private JLabel alamat;
-    private JLabel nik;
+    private JLabel NoRM;
     private JTextField textNama;
     private JTextField textAlamat;
-    private JTextField textNik;
+    private JTextField textNoRM;
     private JButton saveButton; 
     private JMenuBar menuBar;
     private JMenu fileMenu;
     private JMenuItem exitMenuItem;
     private JMenuItem tambahPasien;
     private JLabel namaLabel;
-    private JTextField namaText;
-    private JTextField nikText;
-    private JTextField alamatText;
     private JButton tambahButton;
     private JRadioButton lakiButton;
     private JRadioButton perempuanButton;
@@ -71,33 +68,33 @@ public class DaftarPasienBaruDialog extends JDialog implements ActionListener{
     public void init(){
         this.setLayout(null);
         
-        nama = new JLabel ("NIK ");
-        nama.setBounds(10, 10, 150, 25);
+        NoRM = new JLabel ("NIK ");
+        NoRM.setBounds(10, 10, 150, 25);
+        this.add(NoRM);
+        
+        nama = new JLabel ("Nama ");
+        nama.setBounds(10, 50, 150, 25);
         this.add(nama);
         
-        alamat = new JLabel ("Nama ");
-        alamat.setBounds(10, 50, 150, 25);
+        alamat = new JLabel ("Alamat ");
+        alamat.setBounds(10, 90, 150, 25);
         this.add(alamat);
-        
-        nik = new JLabel ("Alamat ");
-        nik.setBounds(10, 90, 150, 25);
-        this.add(nik);
         
         jenisKlamin = new JLabel ("Jenis Kelamin");
         jenisKlamin.setBounds(10, 140, 160, 25);
         this.add(jenisKlamin);
         
-        textNama = new JTextField ();
-        textNama.setBounds(60, 10, 200, 25);
+        textNoRM = new JTextField ();
+        textNoRM.setBounds(60, 10, 200, 25);
+        this.add(textNoRM);
+        
+        textNama = new JTextField();
+        textNama.setBounds(60, 50, 200, 25);
         this.add(textNama);
         
         textAlamat = new JTextField();
-        textAlamat.setBounds(60, 50, 200, 25);
+        textAlamat.setBounds(60, 90, 200, 25);
         this.add(textAlamat);
-        
-        textNik = new JTextField();
-        textNik.setBounds(60, 90, 200, 25);
-        this.add(textNik);
         
         
         
@@ -166,11 +163,11 @@ public class DaftarPasienBaruDialog extends JDialog implements ActionListener{
         }
         if (e.getSource() == saveButton) {
             Pasien baru = new Pasien();
-            baru.setNama(namaText.getText());
-            baru.setNik(nikText.getText());
-            baru.setAlamat(alamatText.getText());
+            baru.setNama(textNama.getText());
+            baru.setNoRekamMedis(textNoRM.getText());
+            baru.setAlamat(textAlamat.getText());
             Pasien.tambahPasienBaru(baru);
-            JOptionPane.showMessageDialog(null, namaText.getText()+ "Anda Terdaftar");
+            JOptionPane.showMessageDialog(null, textNama.getText()+ " Anda Terdaftar");
             this.dispose();
         }
         

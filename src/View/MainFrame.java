@@ -12,6 +12,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 /**
  *
@@ -24,6 +27,12 @@ public class MainFrame extends JFrame implements ActionListener{
     private JLabel tambahPasienLabel;
     private JLabel tambahAntrianLabel;
     private JLabel keluarLabel;
+    private JMenu file;
+    private JMenuItem tambahPasien;
+    private JMenuItem tambahAntrian;
+    private JMenuItem exit;
+    private JMenuBar menuBar;
+    
     
     
     public MainFrame(){
@@ -34,39 +43,37 @@ public class MainFrame extends JFrame implements ActionListener{
     public void init(){
         this.setLayout(null);
         
-        tambahPasienButton = new JButton ("Tambah Pasien");
-        tambahPasienButton.setFont(new Font ("Rockwell", Font.TRUETYPE_FONT, 20));
-        tambahPasienButton.setBounds(90, 30, 200, 40);
-        this.add(tambahPasienButton);
+        menuBar = new JMenuBar();
+        file = new JMenu("Pasien");
+        tambahPasien = new JMenuItem("Tambah Pasien");
+        tambahAntrian = new JMenuItem ("Tambah Antrian");
+        exit = new JMenuItem ("Exit");
         
-        tambahAntrianButton = new JButton ("Tambah Antrian");
-        tambahAntrianButton.setFont(new Font ("Rockwell", Font.TRUETYPE_FONT, 20));
-        tambahAntrianButton.setBounds(90, 90, 200, 40);
-        this.add(tambahAntrianButton);
+        file.add(tambahPasien);
+        file.add(tambahAntrian);
+        file.add(exit);
         
-        keluarButton = new JButton ("Keluar");
-        keluarButton.setFont(new Font ("Rockwell", Font.TRUETYPE_FONT, 20));
-        keluarButton.setBounds(90, 150, 200, 40);
-        this.add(keluarButton);
+        tambahPasien.addActionListener(this);
+        tambahAntrian.addActionListener(this);
+        exit.addActionListener(this);
+        menuBar.add(file);
+        this.setJMenuBar(menuBar);
         
-        tambahPasienButton.addActionListener(this);
-        tambahAntrianButton.addActionListener(this);
-        keluarButton.addActionListener(this);
     }
     
     
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == keluarButton) {
+        if (e.getSource() == exit) {
             System.exit(0);
         }
-        if (e.getSource() == tambahPasienButton) {
+        if (e.getSource() == tambahPasien) {
             DaftarPasienBaruDialog view = new DaftarPasienBaruDialog();
             view.setSize(400, 400);
             view.setVisible(true);
         }
-        if (e.getSource() == tambahAntrianButton) {
+        if (e.getSource() == tambahAntrian) {
             DaftarAntrianDialog view = new DaftarAntrianDialog();
             view.setSize(400, 400);
             view.setVisible(true);

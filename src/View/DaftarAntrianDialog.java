@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 /**
  *
@@ -77,23 +78,14 @@ public class DaftarAntrianDialog extends JDialog implements ActionListener{
         TextAlamat.setBounds(60, 90, 200, 25);
         this.add(TextAlamat);
         
-        saveButton = new JButton("OK");
-        saveButton.setBounds(150, 150, 75, 30);
-        this.add(saveButton);
         
-        menuBar = new JMenuBar();
         this.setTitle("Main Frame");
-        fileMenu = new JMenu("File");
-        exitMenuItem = new JMenuItem("exit");
-        tambahPasienMenuItem = new JMenuItem("TambahPasien");
-        fileMenu.add(tambahPasienMenuItem);
-        fileMenu.add(exitMenuItem);
-        menuBar.add(fileMenu);
 
-        exitMenuItem.addActionListener((ActionListener) this);
-        tambahPasienMenuItem.addActionListener((ActionListener) this);
+        TextNoRM.addActionListener((ActionListener) this);
+        TextNama.addActionListener(this);
+        TextAlamat.addActionListener(this);
 
-        this.setJMenuBar(menuBar);
+
         
         
         
@@ -103,15 +95,15 @@ public class DaftarAntrianDialog extends JDialog implements ActionListener{
     
     @Override
     public void actionPerformed (ActionEvent e){
-        if (e.getSource() == exitMenuItem) {
-            System.exit(0);
-        }
-        if (e.getSource() == tambahPasienMenuItem) {
-            Pasien baru = new Pasien();
-            baru.setNama(namaText.getText());
-            baru.setAlamat(alamatText.getText());
-            
-            Pasien.tambahPasienBaru(baru);
+
+        if (e.getSource() == TextNoRM) {
+            if (Pasien.cariPasien(TextNoRM.getText()) != null) {
+                TextNama.setText(Pasien.cariPasien(TextNoRM.getText()).getNama());
+                TextAlamat.setText(Pasien.cariPasien(TextNoRM.getText()).getAlamat());
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Nomor Rekam Medis : "+ TextNoRM.getText()+ " Tidak Tersedia");
+            }
             
         }
     }
