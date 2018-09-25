@@ -6,7 +6,7 @@
 package Test;
 
 import Model.AntrianPasien;
-import Model.AntrianKlinik;
+import Model.AntrianPasien;
 import Model.Klinik;
 
 /**
@@ -15,25 +15,25 @@ import Model.Klinik;
  */
 public class TestAntrianKlinik {
     public static void main(String[] args) {
-        AntrianKlinik.buatAntrian(
+        AntrianPasien.buatAntrian(
                 21, 
                 9, 
                 2018, 
                 new Klinik("001","anak"));
         
-        AntrianKlinik.buatAntrian(
+        AntrianPasien.buatAntrian(
                 21, 
                 9, 
                 2018, 
                 new Klinik("002","saraf"));
         
-        AntrianKlinik.buatAntrian(
+        AntrianPasien.buatAntrian(
                 21, 
                 9, 
                 2018, 
                 new Klinik("001","anak"));
-        for (int i = 0; i < AntrianKlinik.daftarAntrian.size(); i++) {
-            System.out.println(AntrianKlinik.
+        for (int i = 0; i < AntrianPasien.daftarAntrian.size(); i++) {
+            System.out.println(AntrianPasien.
                     daftarAntrian.get(i));
         }
         

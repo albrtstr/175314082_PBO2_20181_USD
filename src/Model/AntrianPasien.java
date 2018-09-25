@@ -16,30 +16,30 @@ public class AntrianPasien {
     private int tanggalAntrian;
     private int bulanAntri;
     private int tahunAntrian;
-    private AntrianKlinik klinik;
-    private Pasien daftarAntrianPasien[];
+    private Klinik klinik;
+    private ArrayList<Pasien> daftarPasienAntri = new ArrayList<Pasien>();
+    
     
     public static ArrayList<AntrianPasien> daftarAntrian = new ArrayList <AntrianPasien>();
+    
     
     public AntrianPasien(){
         
     }
     
-    public AntrianPasien (int tanggalAntrian, int bulanAntri, int tahunAntri){
+    public AntrianPasien (int tanggalAntrian, int bulanAntri, int tahunAntri, Klinik klinik){
         this.tanggalAntrian = tanggalAntrian;
         this.bulanAntri = bulanAntri;
         this.tahunAntrian = tahunAntri;
+        this.klinik = klinik;
     }
 
-    public AntrianPasien(int i, int i0, int i1, AntrianKlinik klinik) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    public AntrianKlinik getKlinik() {
+    public Klinik getKlinik() {
         return klinik;
     }
 
-    public void setKlinik(AntrianKlinik klinik) {
+    public void setKlinik(Klinik klinik) {
         this.klinik = klinik;
     }
 
@@ -68,41 +68,79 @@ public class AntrianPasien {
     public void setBulanAntri(int bulanAntri) {
         this.bulanAntri = bulanAntri;
     }
+
+    public ArrayList<Pasien> getDaftarPasienAntri() {
+        return daftarPasienAntri;
+    }
+
+    public void setDaftarPasienAntri(ArrayList<Pasien> daftarPasienAntri) {
+        this.daftarPasienAntri = daftarPasienAntri;
+    }
     
-    private static ArrayList<Pasien> daftarPasien = new ArrayList<>();
     
-    public ArrayList<Pasien> daftarPasien(){
-        return daftarPasien;
+//    public ArrayList<Pasien> daftarPasien(){
+//        return daftarPasien;
+//    }
+    
+    public static void daftarPasien (Pasien pasien, int tanggal, int bulan, int tahun, Klinik klinik){
+        if (cariAntrian(tanggal, bulan, tahun, klinik) >= 0) {
+            daftarAntrian.get(cariAntrian(tanggal, bulan, tahun, klinik)).Mendaftar(pasien);
+        }
+        else {
+            buatAntrian(tanggal, bulan, tahun, klinik);
+            daftarAntrian.get(cariAntrian(tanggal, bulan, tahun, klinik)).Mendaftar(pasien);
+        }
     }
     
     public void Mendaftar (Pasien pasien){
-        daftarPasien.add(pasien);
+        daftarPasienAntri.add(pasien);
     }
     
     public Pasien panggilPasien (int nomorPanggil){
-        return daftarPasien.get(nomorPanggil);
+        return daftarPasienAntri.get(nomorPanggil);
     }
     
-    public Pasien cariPasien (String noRM, int tanggal, int bulan, int tahun){
-        return null;
-    }
     
     public AntrianPasien cariPasien (String noRM){
+        for (int i = 0; i < daftarAntrian.size(); i++) {
+            if (noRM.equals(daftarPasienAntri.get(i).getNoRekamMedis())) {
+                return daftarAntrian.get(i);
+            }
+        }
         return null;
     }
     
-    public static void buatAntrian (int tanggal, int bulan, int tahun, AntrianKlinik klinik){
+    public static void buatAntrian (int tanggal, int bulan, int tahun, Klinik klinik){
         AntrianPasien antrian = new AntrianPasien();
         antrian.setTanggalAntrian(tanggal);
         antrian.setBulanAntri(bulan);
         antrian.setTahunAntrian(tahun);
         antrian.setKlinik(klinik);
-        daftarAntrian.add(antrian);
+        
+        if (cariAntrian(tanggal, bulan, tahun, klinik) < 0) {
+            daftarAntrian.add(antrian);
+        } else {
+            System.out.println("Antrian Sudah Terpakai");
+        }
         
     }
     
-    public AntrianPasien cariAntrian (int tanggal, int bulan, int tahun, AntrianKlinik klinik){
-        return null;
+    public static int cariAntrian (int tanggal, int bulan, int tahun, Klinik klinik){
+        for (int i = 0; i < daftarAntrian.size(); i++) {
+            if (daftarAntrian.get(i).getTanggalAntrian() == tanggal
+                    && daftarAntrian.get(i).getBulanAntri() == bulan
+                    && daftarAntrian.get(i).getBulanAntri() == tahun
+                    && daftarAntrian.get(i).getKlinik().getIdKlinik().equalsIgnoreCase(klinik.getIdKlinik())
+                    && daftarAntrian.get(i).getKlinik().getIdKlinik().equalsIgnoreCase(klinik.getNama())) {
+                return 1;
+            }
+        }
+        return -1;
+    }
+    
+    @Override
+    public String toString(){
+        return String.valueOf(tahunAntrian) + String.valueOf(bulanAntri) + String.valueOf(tanggalAntrian) + klinik.getIdKlinik() + klinik.getNama();
     }
     
 }
