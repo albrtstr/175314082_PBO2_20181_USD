@@ -3,18 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author ASUS
  */
 public class Pasien {
+
     private String noRekamMedis;
     private String nama;
     private String alamat;
@@ -35,12 +42,12 @@ public class Pasien {
         this.noRekamMedis = noRM;
     }
 
-    public Pasien (String nik){
+    public Pasien(String nik) {
         this.nik = nik;
     }
-    
+
     public Pasien() {
-         
+
     }
 
     public String getNik() {
@@ -50,7 +57,6 @@ public class Pasien {
     public void setNik(String nik) {
         this.nik = nik;
     }
-    
 
     public String getNoRekamMedis() {
         return noRekamMedis;
@@ -60,7 +66,6 @@ public class Pasien {
         this.noRekamMedis = noRM;
 
     }
-
 
     public String getNama() {
         return nama;
@@ -111,7 +116,6 @@ public class Pasien {
         this.tahunLahir = tahunLahir;
     }
 
-     
     public static void tambahPasienBaru(Pasien pasien) {
         daftarPasien.add(pasien);
     }
@@ -124,4 +128,49 @@ public class Pasien {
         }
         return null;
     }
+
+    
+    public static void simpanDaftarPasien(File file) {
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            for (int i = 0; i < daftarPasien.size(); i++) {
+                String data = daftarPasien.get(i).toString();
+                fos.write(data.getBytes());
+            }
+            fos.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
+    public static void bacaDaftarPasien(File file) throws IOException {
+        FileInputStream in = new FileInputStream(file);
+        try {
+            String hasilBaca = "";
+            int dataInt;
+            while ((dataInt = in.read()) != -1) {
+                hasilBaca = hasilBaca + (char) dataInt;
+            }
+            System.out.println(hasilBaca);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                in.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return noRekamMedis + "\t" + nama + "\t" + alamat + "\n";
+    }
+
 }
