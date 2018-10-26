@@ -7,27 +7,18 @@ package Test;
 
 import Model.Pasien;
 import java.io.File;
+import java.io.IOException;
 
 /**
  *
  * @author jarkom
  */
 public class TestStream2 {
-    public static void main(String[] args) {
-        Pasien test = new Pasien();
-        test.setNama("puspa");
-        test.setAlamat("klaten");
-        
-        Pasien test1 = new Pasien();
-        test.setNama("adi");
-        test.setAlamat("klaten");
-        
-        System.out.println(test.toString());
-        System.out.println(test1.toString());
-        
-        Pasien.tambahPasienBaru(test);
-        Pasien.tambahPasienBaru(test1);
-        
-        Pasien.simpanDaftarPasien(new File("daftar.txt"));
+    public static void main(String[] args) throws IOException {
+        Pasien.bacaDaftarPasien(new File("daftar.txt"));
+        for (int i = 0; i < Pasien.getDaftarPasien().size(); i++) {
+            System.out.println(Pasien.getDaftarPasien().get(i).toString());
+        }
+
     }
 }

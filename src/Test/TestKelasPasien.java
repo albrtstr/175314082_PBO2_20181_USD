@@ -5,7 +5,7 @@
  */
 package Test;
 
-import Model.AntrianPasien;
+import Model.AntrianKlinik;
 import Model.Pasien;
 
 /**
@@ -15,7 +15,7 @@ import Model.Pasien;
 public class TestKelasPasien {
 
     public static void main(String[] args) {
-        AntrianPasien antri = new AntrianPasien();
+        AntrianKlinik antri = new AntrianKlinik();
         try {
             Pasien test = new Pasien(
                     "Bayu", // nama pasien

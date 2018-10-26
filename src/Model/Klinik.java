@@ -49,8 +49,6 @@ public class Klinik {
         this.nama = nama;
     }
     
-    
-    
     public static ArrayList<Klinik> daftarKlinik = new ArrayList <Klinik>();
     
     public static void tambahKlinik (Klinik klinik){

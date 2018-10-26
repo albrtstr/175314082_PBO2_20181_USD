@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author ASUS
  */
-public class AntrianPasien {
+public class AntrianKlinik {
     private int tanggalAntrian;
     private int bulanAntri;
     private int tahunAntrian;
@@ -20,14 +20,14 @@ public class AntrianPasien {
     private ArrayList<Pasien> daftarPasienAntri = new ArrayList<Pasien>();
     
     
-    public static ArrayList<AntrianPasien> daftarAntrian = new ArrayList <AntrianPasien>();
+    public static ArrayList<AntrianKlinik> daftarAntrianKlinik = new ArrayList <AntrianKlinik>();
     
     
-    public AntrianPasien(){
+    public AntrianKlinik(){
         
     }
     
-    public AntrianPasien (int tanggalAntrian, int bulanAntri, int tahunAntri, Klinik klinik){
+    public AntrianKlinik (int tanggalAntrian, int bulanAntri, int tahunAntri, Klinik klinik){
         this.tanggalAntrian = tanggalAntrian;
         this.bulanAntri = bulanAntri;
         this.tahunAntrian = tahunAntri;
@@ -84,11 +84,11 @@ public class AntrianPasien {
     
     public static void daftarPasien (Pasien pasien, int tanggal, int bulan, int tahun, Klinik klinik){
         if (cariAntrian(tanggal, bulan, tahun, klinik) >= 0) {
-            daftarAntrian.get(cariAntrian(tanggal, bulan, tahun, klinik)).Mendaftar(pasien);
+            daftarAntrianKlinik.get(cariAntrian(tanggal, bulan, tahun, klinik)).Mendaftar(pasien);
         }
         else {
             buatAntrian(tanggal, bulan, tahun, klinik);
-            daftarAntrian.get(cariAntrian(tanggal, bulan, tahun, klinik)).Mendaftar(pasien);
+            daftarAntrianKlinik.get(cariAntrian(tanggal, bulan, tahun, klinik)).Mendaftar(pasien);
         }
     }
     
@@ -101,24 +101,24 @@ public class AntrianPasien {
     }
     
     
-    public AntrianPasien cariPasien (String noRM){
-        for (int i = 0; i < daftarAntrian.size(); i++) {
+    public AntrianKlinik cariPasien (String noRM){
+        for (int i = 0; i < daftarAntrianKlinik.size(); i++) {
             if (noRM.equals(daftarPasienAntri.get(i).getNoRekamMedis())) {
-                return daftarAntrian.get(i);
+                return daftarAntrianKlinik.get(i);
             }
         }
         return null;
     }
     
     public static void buatAntrian (int tanggal, int bulan, int tahun, Klinik klinik){
-        AntrianPasien antrian = new AntrianPasien();
+        AntrianKlinik antrian = new AntrianKlinik();
         antrian.setTanggalAntrian(tanggal);
         antrian.setBulanAntri(bulan);
         antrian.setTahunAntrian(tahun);
         antrian.setKlinik(klinik);
         
         if (cariAntrian(tanggal, bulan, tahun, klinik) < 0) {
-            daftarAntrian.add(antrian);
+            daftarAntrianKlinik.add(antrian);
         } else {
             System.out.println("Antrian Sudah Terpakai");
         }
@@ -126,12 +126,12 @@ public class AntrianPasien {
     }
     
     public static int cariAntrian (int tanggal, int bulan, int tahun, Klinik klinik){
-        for (int i = 0; i < daftarAntrian.size(); i++) {
-            if (daftarAntrian.get(i).getTanggalAntrian() == tanggal
-                    && daftarAntrian.get(i).getBulanAntri() == bulan
-                    && daftarAntrian.get(i).getBulanAntri() == tahun
-                    && daftarAntrian.get(i).getKlinik().getIdKlinik().equalsIgnoreCase(klinik.getIdKlinik())
-                    && daftarAntrian.get(i).getKlinik().getIdKlinik().equalsIgnoreCase(klinik.getNama())) {
+        for (int i = 0; i < daftarAntrianKlinik.size(); i++) {
+            if (daftarAntrianKlinik.get(i).getTanggalAntrian() == tanggal
+                    && daftarAntrianKlinik.get(i).getBulanAntri() == bulan
+                    && daftarAntrianKlinik.get(i).getBulanAntri() == tahun
+                    && daftarAntrianKlinik.get(i).getKlinik().getIdKlinik().equalsIgnoreCase(klinik.getIdKlinik())
+                    && daftarAntrianKlinik.get(i).getKlinik().getIdKlinik().equalsIgnoreCase(klinik.getNama())) {
                 return 1;
             }
         }
