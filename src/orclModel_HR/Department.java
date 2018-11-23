@@ -74,7 +74,7 @@ public class Department {
             //step3 create the statement object
             Statement stmt = con.createStatement();
             //step4 execute query
-            String query = "select e.EMPLOYEE_ID, e.MANAGER_ID, e.FIRST_NAME, e.LAST_NAME\n" +
+            String query = "select distinct e.EMPLOYEE_ID, e.MANAGER_ID, e.FIRST_NAME, e.LAST_NAME\n" +
                            "from EMPLOYEES e join EMPLOYEES em\n" +
                            "on e.MANAGER_ID = em.EMPLOYEE_ID\n" +
                            "where e.DEPARTMENT_ID = "+getDeparment_ID();
