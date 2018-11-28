@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import model_RS.Dokter;
 import model_RS.RumahSakit;
 
 /**
@@ -47,6 +48,23 @@ public class TambahDokterDialog extends JDialog{
         tambahButton = new JButton("Tambah");
         tambahButton.setBounds(50, 200, 100, 30);
         add(tambahButton);
+        
+        idDokterLabel = new JLabel ("ID Dokter ");
+        idDokterLabel.setBounds(50, 50, 100, 30);
+        add(idDokterLabel);
+        
+        namaDokterLabel = new JLabel ("Nama Dokter ");
+        namaDokterLabel.setBounds(50, 100, 100, 30);
+        add(namaDokterLabel);
+        
+        idDokterText = new JTextField();
+        idDokterText.setBounds(140, 55, 100, 25);
+        add(idDokterText);
+        
+        namaDokterText = new JTextField();
+        namaDokterText.setBounds(140, 105, 100, 25);
+        add(namaDokterText);
+        
         // set action listener button
         tambahButton.addActionListener(new ActionListener() {
             @Override
@@ -56,6 +74,12 @@ public class TambahDokterDialog extends JDialog{
         });
     }
     public void tambahDokter(){
+        Dokter tambah = new Dokter();
+        tambah.setIdDokter(idDokterText.getText());
+        tambah.setNama(namaDokterText.getText());
+        rumahSakit.tambahDokter(tambah);
+        
+        
         
         owner.refreshTabelDokter();
         dispose();

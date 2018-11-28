@@ -65,6 +65,12 @@ public class MyDokterDialog extends JDialog {
         // tombol untuk simpan data arrayList Dokter ke basis data
         simpanButton = new JButton("Simpan Ke Database");
         tombolPanel.add(simpanButton);
+        simpanButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                rs.simpanDataDokter();
+            }
+        });
         add(tombolPanel,BorderLayout.NORTH);
         // set visible
         setVisible(true);
@@ -80,7 +86,8 @@ public class MyDokterDialog extends JDialog {
      * Fungsi untuk merefresh isi tabel dokter
      */
     public void refreshTabelDokter(){
-        // update table model
+        //table = new JTable(new DokterTableModel(rs.getDaftarDokter()));
+        table.setModel(new DokterTableModel(rs.getDaftarDokter()));
     }
 
 }

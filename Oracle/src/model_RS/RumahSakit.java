@@ -34,12 +34,46 @@ public class RumahSakit {
         this.nama = nama;
         this.alamat = alamat;
     }
+    
+    public boolean dokter(boolean dok){
+        return dok;
+    }
 
     /**
      * Fungsi untuk tambah dokter di array list
      *
      * @param dokter
      */
+    public boolean isDokterExist(Dokter dokter){
+        boolean result = true;
+        try {
+            
+            // buat kelas database
+            MyOracle ora = new MyOracle("172.23.9.185", "1521", "orcl",
+                    MyOracle.USER_NAME, MyOracle.PASSWORD);
+            // buat koneksi
+            Connection con = ora.getConnection();
+            // buat statement
+            Statement statement = con.createStatement();
+            // buat query
+            // SELECT id_dokter,nama from puspa.dokter 
+            String query = "SELECT * from dokter\n"
+                    +      "where id_dokter = "+dokter.getIdDokter();
+            // jalankan/eksekusi queri
+            ResultSet rs = statement.executeQuery(query);
+            rs.next();
+            if (rs.isFirst()) {
+                result =true; 
+            }
+            
+            // tutup koneksi
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(RumahSakit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+    
     public void tambahDokter(Dokter dokter) {
         getDaftarDokter().add(dokter);
     }
