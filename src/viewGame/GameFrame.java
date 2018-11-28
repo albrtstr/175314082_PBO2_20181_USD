@@ -6,6 +6,7 @@
 package viewGame;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -105,7 +106,7 @@ public class GameFrame extends JFrame{
     public void pindahKanan() {
         // posisiX seluruh sel ditambah 20
         // sehingga sel akan terlihat bergerak ke kanan
-        for (int i = 0; i < getTempatPanel().getTempat().getDaftarSel().size(); i++) {
+        for (int i = 0; i < getTempatPanel().getTempat().getDaftarSel(); i++) {
             // set posisiX yang baru
             getTempatPanel().getTempat().getDaftarSel().get(i).geserKanan();
         }
